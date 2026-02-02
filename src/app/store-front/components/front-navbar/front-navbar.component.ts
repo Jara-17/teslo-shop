@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, output } from '@angular/core';
-import { ThemeService, ThemeName } from '../../../core/services/theme.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeName, ThemeService } from '@/core/services/theme.service';
 
 @Component({
   selector: 'front-navbar',
