@@ -13,11 +13,10 @@ export default class HomePageComponent {
 
   productsResorce = rxResource({
     request: () => ({
-
     }),
 
     loader: ({ request }) => {
-      return this.productsService.getProducts();
+      return this.productsService.getProducts({});
     }
   })
 }

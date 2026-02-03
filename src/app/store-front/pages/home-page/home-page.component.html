@@ -1,5 +1,5 @@
 <div class="m-4">
-  <h1 class="text-3xl font-bold">
+  <h1 class="text-3xl text-primary font-bold">
     Discover Our Collection
   </h1>
   <h2 class="text-xl">Find something for every taste</h2>
@@ -7,12 +7,11 @@
 
 
 <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-4">
-  <product-card/>
-  <product-card/>
-  <product-card/>
-  <product-card/>
-  <product-card/>
-  <product-card/>
-  <product-card/>
-  <product-card/>
+  @for (product of productsResorce.value()?.products; track product.id) {
+    <product-card [product]="product" />
+  }
+
+  @empty {
+    <p>No Products Available</p>
+  }
 </section>
