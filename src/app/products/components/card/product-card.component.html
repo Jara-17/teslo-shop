@@ -4,7 +4,13 @@
     </figure>
 
   <div class="card-body">
-    <h2 class="card-title text-primary text-xl">{{ product().title }}</h2>
+    <a [routerLink]="['/product', product().slug]" class="block">
+      <h2
+        class="card-title text-primary text-xl hover:underline"
+      >
+        {{ product().title }}
+      </h2>
+    </a>
 
     <p>{{ product().description | slice: 0:70 }}...</p>
 
