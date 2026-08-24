@@ -1,8 +1,10 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { ProductsService } from '@/products/services/products.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductCarouselComponent } from "@/products/components/product-carousel/product-carousel.component";
+import { Product } from '@/products/interfaces/product.interface';
+
 @Component({
   selector: 'product-page',
   imports: [ProductCarouselComponent],
@@ -17,14 +19,8 @@ export default class ProductPageComponent {
     return this.activatedRoute.snapshot.paramMap.get('idSlug');
   });
 
-  productResource = rxResource({
-    params: () => ({
-      slug: this.idSlug()!,
-    }),
-
-    stream: ({ params }) => {
-      return this.productsService.getProductBySlug(params.slug);
-    }
+  productResource = httpResource<Product>(() => {
+    const slug = this.idSlug();
+    return slug ? this.productsService.getProductBySlugUrl(slug) : undefined;
   });
-
 }

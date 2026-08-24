@@ -4,6 +4,12 @@
   </div>
 }
 
+@if (productResource.error()) {
+  <div class="alert alert-error m-4">
+    <span>Something went wrong loading the product.</span>
+  </div>
+}
+
 @if(productResource.hasValue()) {
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 m-4">
     <!-- Images -->

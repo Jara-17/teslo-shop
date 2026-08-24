@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Product, ProductsResponse } from '../interfaces/product.interface';
-import { Observable, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpResourceRequest } from '@angular/common/http';
+import { Product } from '../interfaces/product.interface';
 import { environment } from '@env/environment';
 
 const baseUrl = environment.apiUrl;
 
-interface ProductsOtions {
+export interface ProductsOptions {
   limit?: number;
   offset?: number;
   gender?: string;
@@ -16,21 +15,20 @@ interface ProductsOtions {
   providedIn: 'root'
 })
 export class ProductsService {
-  private http = inject(HttpClient);
-
-  getProducts(options: ProductsOtions): Observable<ProductsResponse> {
+  getProductsRequest(options: ProductsOptions): HttpResourceRequest {
     const { limit = 9, offset = 0, gender = '' } = options;
 
-    return this.http.get<ProductsResponse>(`${baseUrl}/products?`, {
+    return {
+      url: `${baseUrl}/products`,
       params: {
         limit,
         offset,
         gender
       }
-    })
+    };
   }
 
-  getProductBySlug(idSlug: Product['slug'] | Product['id']): Observable<Product> {
-    return this.http.get<Product>(`${baseUrl}/products/${idSlug}`);
+  getProductBySlugUrl(idSlug: Product['slug'] | Product['id']): string {
+    return `${baseUrl}/products/${idSlug}`;
   }
 }

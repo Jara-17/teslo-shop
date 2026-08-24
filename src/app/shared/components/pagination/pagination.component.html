@@ -1,0 +1,32 @@
+<section class="flex justify-between items-center mt-4 mb-10 px-4">
+  <button
+    class="btn btn-soft btn-primary"
+    [class.btn-disabled]="activePage() <= 1"
+    [disabled]="activePage() <= 1"
+    [routerLink]="[]"
+    [queryParams]="{ page: activePage() - 1 }"
+  > < Previous</button>
+  <div class="join">
+    @for (page of getPagesList(); track page) {
+      <button
+        class="join-item btn btn-soft btn-primary"
+        [class.btn-accent]="page === activePage()"
+        [class.btn-active]="page === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{
+          page: page
+        }"
+        (click)="activePage.set(page)"
+      >
+        {{ page }}
+      </button>
+    }
+  </div>
+  <button
+    class="btn btn-soft btn-primary"
+    [class.btn-disabled]="activePage() >= pages()"
+    [disabled]="activePage() >= pages()"
+    [routerLink]="[]"
+    [queryParams]="{ page: activePage() + 1 }"
+  >Next > </button>
+</section>

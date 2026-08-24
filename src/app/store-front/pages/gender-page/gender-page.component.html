@@ -6,4 +6,19 @@
   <h2 class="text-xl">Find something for every taste</h2>
 </div>
 
-<products-list [products]="productsResorce.value()?.products ?? []" />
+@if (productsResource.isLoading()) {
+  <div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-xl"></span>
+  </div>
+}
+
+@if (productsResource.error()) {
+  <div class="alert alert-error m-4">
+    <span>Something went wrong loading the products.</span>
+  </div>
+}
+
+@if (productsResource.hasValue()) {
+  <products-list [products]="productsResource.value().products" />
+  <app-pagination [currentPage]="currentPage()" [pages]="productsResource.value().pages" />
+}
