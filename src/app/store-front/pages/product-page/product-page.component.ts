@@ -21,6 +21,6 @@ export default class ProductPageComponent {
 
   productResource = httpResource<Product>(() => {
     const slug = this.idSlug();
-    return slug ? this.productsService.getProductBySlugUrl(slug) : undefined;
+    return slug ? this.productsService.getProductBySlugRequest(slug) : undefined;
   });
 }

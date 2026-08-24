@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpResourceRequest } from '@angular/common/http';
+import { HttpContext, HttpResourceRequest } from '@angular/common/http';
 import { Product } from '../interfaces/product.interface';
 import { environment } from '@env/environment';
+import { CACHEABLE } from '@core/interceptors/cache.interceptor';
 
 const baseUrl = environment.apiUrl;
 
@@ -24,11 +25,15 @@ export class ProductsService {
         limit,
         offset,
         gender
-      }
+      },
+      context: new HttpContext().set(CACHEABLE, true)
     };
   }
 
-  getProductBySlugUrl(idSlug: Product['slug'] | Product['id']): string {
-    return `${baseUrl}/products/${idSlug}`;
+  getProductBySlugRequest(idSlug: Product['slug'] | Product['id']): HttpResourceRequest {
+    return {
+      url: `${baseUrl}/products/${idSlug}`,
+      context: new HttpContext().set(CACHEABLE, true)
+    };
   }
 }
