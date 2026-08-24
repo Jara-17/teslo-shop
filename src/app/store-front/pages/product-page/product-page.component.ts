@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductsService } from '@/products/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { ProductCarouselComponent } from "@/products/components/product-carousel
 @Component({
   selector: 'product-page',
   imports: [ProductCarouselComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './product-page.component.html',
 })
 export default class ProductPageComponent {
@@ -17,12 +18,12 @@ export default class ProductPageComponent {
   });
 
   productResource = rxResource({
-    request: () => ({
+    params: () => ({
       slug: this.idSlug()!,
     }),
 
-    loader: ({ request }) => {
-      return this.productsService.getProductBySlug(request.slug);
+    stream: ({ params }) => {
+      return this.productsService.getProductBySlug(params.slug);
     }
   });
 

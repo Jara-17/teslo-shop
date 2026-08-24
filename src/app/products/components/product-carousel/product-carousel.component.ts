@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, input, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, input, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import Swiper from 'swiper';
 import {Navigation, Pagination} from 'swiper/modules';
 
@@ -11,6 +11,7 @@ import { ProductImagePipe } from '@/products/pipes/product-image.pipe';
   selector: 'product-carousel',
   imports: [ProductImagePipe],
   templateUrl: './product-carousel.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: `
     .swiper {
       width: 100%;

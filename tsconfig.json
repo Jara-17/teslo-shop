@@ -1,16 +1,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/app/*"],
-      "@auth/*": ["src/app/auth/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@products/*": ["src/app/products/*"],
-      "@store-front/*": ["src/app/store-front/*"],
-      "@admin/*": ["src/app/admin/*"],
-      "@core/*": ["src/app/core/*"],
-      "@utils/*": ["src/app/utils/*"]
+      "@/*": ["./src/app/*"],
+      "@auth/*": ["./src/app/auth/*"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@products/*": ["./src/app/products/*"],
+      "@store-front/*": ["./src/app/store-front/*"],
+      "@admin/*": ["./src/app/admin/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@utils/*": ["./src/app/utils/*"],
+      "@env/*": ["./src/environments/*"]
     },
 
     "outDir": "./dist/out-tsc",

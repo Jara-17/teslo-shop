@@ -1,1 +1,9 @@
-<p>gender-page works!</p>
+<div class="m-4">
+  <h1 class="text-3xl font-bold">
+    Discover Our Collection
+    <span class="text-accent">{{ gender() | titlecase }}</span>
+  </h1>
+  <h2 class="text-xl">Find something for every taste</h2>
+</div>
+
+<products-list [products]="productsResorce.value()?.products ?? []" />
