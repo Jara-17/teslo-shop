@@ -1,0 +1,53 @@
+<section>
+  <auth-title
+    title="Register"
+    subtitle="Create an account to get started."
+  />
+
+  <form (submit)="onSubmit(); $event.preventDefault()">
+
+    <form-input
+      label="Full name"
+      placeholder="John Doe"
+      icon="fa-solid fa-user"
+      [formField]="registerForm.fullName"
+    />
+
+    <form-input
+      label="Email"
+      type="email"
+      placeholder="email@example.com"
+      icon="fa-solid fa-envelope"
+      [formField]="registerForm.email"
+    />
+
+    <form-password-input
+      label="Password"
+      placeholder="••••••••"
+      icon="fa-solid fa-lock"
+      [showStrengthPanel]="true"
+      [formField]="registerForm.password"
+    />
+
+    <form-password-input
+      label="Confirm password"
+      placeholder="••••••••"
+      icon="fa-solid fa-lock"
+      [formField]="registerForm.confirmPassword"
+    />
+
+    <app-button
+      type="submit"
+      [block]="true"
+      [disabled]="registerForm().invalid() || registerResource.isLoading()"
+      [loading]="registerResource.isLoading()"
+    >
+      Register
+    </app-button>
+
+    <p class="text-center text-sm mt-4">
+      Already have an account?
+      <a routerLink="/auth/login" class="link link-primary">Sign in</a>
+    </p>
+  </form>
+</section>

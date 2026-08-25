@@ -1,0 +1,16 @@
+@for (group of groups(); track group.position) {
+  <div class="toast {{ group.positionClass }} z-50">
+    @for (toast of group.toasts; track toast.id) {
+      <div role="alert" class="alert {{ variantStyles[toast.variant].alertClass }} animate-fadeIn">
+        <i [class]="variantStyles[toast.variant].icon"></i>
+        <div>
+          <h3 class="font-bold">{{ toast.title }}</h3>
+          <div class="text-xs">{{ toast.message }}</div>
+        </div>
+        <button type="button" class="btn btn-ghost btn-xs btn-circle" (click)="toastService.dismiss(toast.id)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    }
+  </div>
+}

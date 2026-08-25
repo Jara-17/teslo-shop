@@ -1,0 +1,38 @@
+<section>
+  <auth-title
+    title="Login"
+    subtitle="Welcome back! Please enter your details."
+  />
+
+  <form (submit)="onSubmit(); $event.preventDefault()">
+
+    <form-input
+      label="Email"
+      type="email"
+      placeholder="email@example.com"
+      icon="fa-solid fa-envelope"
+      [formField]="loginForm.email"
+    />
+
+    <form-password-input
+      label="Password"
+      placeholder="••••••••"
+      icon="fa-solid fa-lock"
+      [formField]="loginForm.password"
+    />
+
+    <app-button
+      type="submit"
+      [block]="true"
+      [disabled]="loginForm().invalid() || loginResource.isLoading()"
+      [loading]="loginResource.isLoading()"
+    >
+      Login
+    </app-button>
+
+    <p class="text-center text-sm mt-4">
+      Don't have an account?
+      <a routerLink="/auth/register" class="link link-primary">Sign up</a>
+    </p>
+  </form>
+</section>

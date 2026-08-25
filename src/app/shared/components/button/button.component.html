@@ -1,0 +1,13 @@
+<button [type]="type()" [class]="classes()" [disabled]="disabled() || loading()">
+  @if (loading()) {
+    <span class="loading loading-spinner"></span>
+    <span class="ml-2">Loading...</span>
+  } @else if (label()) {
+    @if (icon()) {
+      <i [class]="icon()"></i>
+    }
+    {{ label() }}
+  } @else {
+    <ng-content/>
+  }
+</button>

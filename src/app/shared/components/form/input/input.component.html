@@ -1,0 +1,21 @@
+<fieldset class="fieldset">
+  @if (label()) {
+    <legend class="fieldset-legend">{{ label() }}</legend>
+  }
+  <label class="input w-full">
+    @if (icon()) {
+      <i [class]="icon()"></i>
+    }
+    <input
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [value]="value()"
+      (input)="value.set(inputElement.value)"
+      (blur)="touch.emit()"
+      #inputElement
+    />
+    <ng-content/>
+  </label>
+  <form-error-message [errors]="errors()" [touched]="touched()" />
+</fieldset>
